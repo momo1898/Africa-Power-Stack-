@@ -565,6 +565,35 @@ html[dir="rtl"] #pbRole.on{box-shadow:inset -3px 0 0 var(--you)}
 }
 @media (prefers-reduced-motion:reduce){.ux-pulse{animation:none}.pb-tabs,.pb-sub,.ux-drawer,.ux-drawer .panel,.ux-toast{transition:none}}
 @media print{#psbar,.ux-drawer,.ux-toast,.ux-next{display:none!important}.view[hidden]{display:flex!important}}
+
+/* hackathon preview */
+.hk-hero{border:1.5px solid var(--ink);border-top:6px solid var(--accent);background:var(--sheet);padding:24px;display:flex;flex-direction:column;gap:14px}
+.hk-hero h1{font-size:clamp(30px,5vw,56px)}
+.hk-q{font-size:19px;max-width:70ch;font-family:var(--display);font-weight:600;line-height:1.3}
+.hk-hero p{max-width:75ch}
+.hk-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.hk-cta a.btn{text-decoration:none}
+.hk-tag{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:500}
+.hk-grp{margin-top:6px;color:var(--muted);font-family:var(--mono);font-size:11.5px;letter-spacing:.1em}
+.hk-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.hk-kpis{grid-template-columns:1fr}}
+.hk-kpi{border:1.5px solid var(--rule);background:var(--sheet);padding:14px 16px;display:flex;flex-direction:column;gap:6px;border-radius:4px}
+.hk-kpi strong{font-family:var(--display);font-size:38px;line-height:1;font-weight:800;font-variant-numeric:tabular-nums}
+.hk-kpi span{font-size:13.5px;color:var(--muted)}
+.hk-kpi.hot{border-color:var(--f-force);background:color-mix(in srgb,var(--f-force) 8%,var(--sheet))}
+.hk-kpi.hot strong{color:var(--f-force)}
+.hk-tracks{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.hk-track{border:1.5px solid var(--rule);background:var(--sheet);padding:14px;display:flex;flex-direction:column;gap:6px;border-radius:4px}
+.hk-track .lbl{color:var(--accent)}.hk-track p{font-size:14px;flex:1}.hk-track .btn{align-self:flex-start}
+.hk-steps{margin:0;padding-inline-start:22px;display:flex;flex-direction:column;gap:8px;max-width:80ch;font-size:15.5px}
+.hk-formats{min-width:0}
+.hk-after{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1.5px solid var(--ink);background:var(--sheet)}
+@media (max-width:760px){.hk-after{grid-template-columns:1fr}}
+.hk-after>div{padding:18px;border-inline-end:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}.hk-after>div:last-child{border-inline-end:0}
+.hk-after .lbl{color:var(--accent)}
+.hk-insp{border-inline-start:3px solid var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);padding:10px 12px;font-size:13.5px;display:flex;flex-direction:column;gap:6px}
+.hk-insp b{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--accent)}
+.hk-insp .btn{align-self:flex-start}
+.hk-flash{animation:uxpulse .9s ease-out 1;outline:2px solid var(--accent);outline-offset:3px}
 </style>
 
 <div class="wrap">
@@ -791,6 +820,54 @@ html[dir="rtl"] #pbRole.on{box-shadow:inset -3px 0 0 var(--you)}
 <section id="conclusion"><div id="endRoot"></div></section>
 </div>
 
+<div class="view" data-view="hack" id="view-hack" role="tabpanel" hidden>
+<section id="hack-hero">
+ <div class="hk-hero">
+  <div class="eyebrow">New · Open to every campus, class and community</div>
+  <h1>Africa Power Stack Policy Hackathon</h1>
+  <p class="lead hk-q">If you could change one thing about how power is built and shared, what would most improve the lives of ordinary Africans, and how would you get the people who hold power today to accept it?</p>
+  <p>Teams of students redesign one part of the Power Stack (a player, a connection, a flaw or a path to change) and the whole room votes for the best ideas. Run it as a student association event, a Model UN or Model AU committee, a class project or a think-tank policy lab. The framework covers the whole continent, but ideas can be scaled down to one country, city or campus.</p>
+  <div class="hk-cta"><a class="btn primary" href="#hack-host">Host a hackathon</a><a class="btn" href="#hack-after">Submit your winners</a><span class="hk-tag">#AfricaPowerStackHack</span></div>
+ </div>
+</section>
+<section id="hack-why">
+ <div class="section-head"><div class="eyebrow">Why now</div><h2>Africa is falling behind just as the world's youngest population grows</h2><p>No election, leader or donor alone will fix these. They need new rules, new incentives and new coalitions, which is what the Power Stack lets you design.</p></div>
+ <h4 class="hk-grp">Falling behind the developing world</h4><div class="hk-kpis"><div class="hk-kpi hot"><strong>2 in 3</strong><span>of the world's extremely poor live in sub-Saharan Africa, up from about 1 in 7 in 1990</span></div><div class="hk-kpi"><strong>Nearly half</strong><span>of sub-Saharan Africans live below $3 a day; India cut its rate from 27% to 5% in a decade</span></div><div class="hk-kpi"><strong>0%</strong><span>growth in income per person in sub-Saharan Africa from 2015 to 2023: a lost decade</span></div></div><h4 class="hk-grp">The youngest, fastest-growing population</h4><div class="hk-kpis"><div class="hk-kpi"><strong>19</strong><span>median age, the youngest of any region; 28% of the world's under-25s are African</span></div><div class="hk-kpi"><strong>2.5 billion</strong><span>Africans expected by 2050, more than a quarter of humanity</span></div><div class="hk-kpi"><strong>12m vs 3m</strong><span>young job-seekers each year versus formal jobs created</span></div></div><h4 class="hk-grp">What holds progress back</h4><div class="hk-kpis"><div class="hk-kpi"><strong>312 million</strong><span>children in extreme poverty in sub-Saharan Africa, three quarters of the world's total</span></div><div class="hk-kpi"><strong>4 in 5</strong><span>sub-Saharan countries where debt interest exceeds health or education spending</span></div><div class="hk-kpi"><strong>38% vs 68%</strong><span>of Africans online in 2024 versus the world; about half lack reliable electricity</span></div></div><h4 class="hk-grp">Climate and AI</h4><div class="hk-kpis"><div class="hk-kpi"><strong>Up to 5%</strong><span>of GDP lost each year to drought, floods and heat; adaptation needs $30–50bn a year</span></div><div class="hk-kpi"><strong>Under 10%</strong><span>of global emissions come from Africa, which bears some of the heaviest costs</span></div><div class="hk-kpi"><strong>+4% or +0.4%</strong><span>possible GDP gain from AI in a decade: if power and internet gaps close, or on current trends</span></div></div>
+ <p class="fine">Sources: World Bank, UNICEF, IMF, UN via Pew Research, WMO, ONE, The Standard. Poverty figures use the $3 a day line except the 1990 comparison ($2.15). Full list in the hackathon brief.</p>
+</section>
+<section id="hack-tracks">
+ <div class="section-head"><div class="eyebrow">Challenge tracks</div><h2>Seventeen ways to hack the stack</h2><p>Pick a track, open its place on the map, and design a change. A wildcard lets teams work anywhere else in the stack.</p></div>
+ <h4 class="hk-grp">Governance and accountability</h4><div class="hk-tracks"><div class="hk-track"><span class="lbl">Track 01 · Flaw 2</span><h3>Fair referees</h3><p>How can elections, courts and counts be run by bodies the incumbent does not control?</p><button class="btn hk-map" data-node="ec" data-track="1">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 02 · Flaws 3 and 9</span><h3>Money that answers to citizens</h3><p>How can resource, aid and loan money reach clinics, schools and roads instead of patronage?</p><button class="btn hk-map" data-node="tres" data-track="2">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 03 · Flaws 1 and 13</span><h3>Safe exits and peaceful change</h3><p>How can leaders leave office safely, and emergencies end on time?</p><button class="btn hk-map" data-node="pres" data-track="3">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 04 · Flaw 6</span><h3>Peace and security</h3><p>How can armies, police and peacekeepers protect citizens rather than rulers?</p><button class="btn hk-map" data-node="sec" data-track="4">See it on the map →</button></div></div><h4 class="hk-grp">People and opportunity</h4><div class="hk-tracks"><div class="hk-track"><span class="lbl">Track 05 · Flaw 10</span><h3>A seat for the young</h3><p>How can a population with a median age of 19 get real power over decisions?</p><button class="btn hk-map" data-node="youth" data-track="5">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 06 · Part 9</span><h3>Jobs and markets</h3><p>How can trade, free movement and the informal economy create formal work for 12 million new job-seekers a year?</p><button class="btn hk-map" data-node="recs" data-track="6">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 07 · Careers</span><h3>Learning and skills</h3><p>How can schools and universities prepare young people for the jobs, and the AI, of 2040?</p><button class="btn hk-map" data-node="tech" data-track="7">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 08 · Careers</span><h3>Health for all</h3><p>How can clinics, medicines and health workers reach the poorest, and keep doctors from leaving?</p><button class="btn hk-map" data-node="tres" data-track="8">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 09 · Risks by gender</span><h3>Women and girls</h3><p>How can women gain equal power over land, money, politics and safety?</p><button class="btn hk-map" data-node="cso" data-track="9">See it on the map →</button></div></div><h4 class="hk-grp">Planet and resources</h4><div class="hk-tracks"><div class="hk-track"><span class="lbl">Track 10 · Lenders</span><h3>Climate and adaptation</h3><p>Who should decide, pay for and benefit from adaptation to drought, floods and heat?</p><button class="btn hk-map" data-node="rural" data-track="10">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 11 · Farmers</span><h3>Food, land and water</h3><p>How can farmers secure land, water and fair prices, and feed nearly 2.5 billion people?</p><button class="btn hk-map" data-node="trad" data-track="11">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 12 · Treasury</span><h3>Energy for everyone</h3><p>How can the half of the region without reliable electricity get it, and who should own it?</p><button class="btn hk-map" data-node="tres" data-track="12">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 13 · Extractives</span><h3>Minerals for development</h3><p>How can the minerals the world needs for batteries and solar build African industry?</p><button class="btn hk-map" data-node="ext" data-track="13">See it on the map →</button></div></div><h4 class="hk-grp">Connections and the wider world</h4><div class="hk-tracks"><div class="hk-track"><span class="lbl">Track 14 · Flaw 8</span><h3>Digital Africa and AI</h3><p>How can connectivity, data and AI serve citizens and stay hard to switch off or misuse?</p><button class="btn hk-map" data-node="tech" data-track="14">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 15 · Urban youth</span><h3>Cities and housing</h3><p>How can fast-growing cities give newcomers homes, transport and a voice?</p><button class="btn hk-map" data-node="youth" data-track="15">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 16 · Flaws 5, 11, 12</span><h3>Partners, neighbours and the diaspora</h3><p>How can foreign partners, neighbouring states and the diaspora push toward accountability?</p><button class="btn hk-map" data-node="nbr" data-track="16">See it on the map →</button></div><div class="hk-track"><span class="lbl">Track 17 · FAQ</span><h3>Mobility and migration</h3><p>How can Africans move, study and work across the continent and the world more freely?</p><button class="btn hk-map" data-node="dia" data-track="17">See it on the map →</button></div></div>
+</section>
+<section id="hack-host">
+ <div class="section-head"><div class="eyebrow">How it works</div><h2>Five steps, any format</h2></div>
+ <ol class="hk-steps">
+  <li><b>Explore.</b> Participants tour this guide, pick a country type and a career, and choose a track.</li>
+  <li><b>Team up.</b> Teams of 3 to 5, mixing fields, countries and years of study.</li>
+  <li><b>Design.</b> Answer five questions: the problem, the change, winners and losers, the coalition, the proof. Write it on the one-page template.</li>
+  <li><b>Pitch.</b> 3 minutes per team, 2 minutes of questions.</li>
+  <li><b>Vote.</b> Everyone ranks their top 3, never their own team: 3 points for 1st, 2 for 2nd, 1 for 3rd.</li>
+ </ol>
+ <div class="issues"><table class="hk-formats"><thead><tr><th>Format</th><th>Best for</th><th>Length</th></tr></thead><tbody>
+  <tr><td><b>Sprint</b></td><td>Student associations, student unions</td><td>3 to 4 hours</td></tr>
+  <tr><td><b>Full-day hackathon</b></td><td>Stand-alone campus events</td><td>1 day</td></tr>
+  <tr><td><b>Conference track</b></td><td>Student and academic conferences</td><td>1 to 2 sessions</td></tr>
+  <tr><td><b>Crisis committee</b></td><td>Model UN, Model African Union</td><td>1 session</td></tr>
+  <tr><td><b>Class project</b></td><td>African studies, political science, IR, economics</td><td>3 to 6 weeks</td></tr>
+  <tr><td><b>Policy lab</b></td><td>Think tanks, civil society</td><td>1 to 2 days</td></tr>
+  <tr><td><b>Online edition</b></td><td>Diaspora networks, multi-campus groups</td><td>1 to 2 weeks</td></tr>
+ </tbody></table></div>
+</section>
+<section id="hack-after">
+ <div class="section-head"><div class="eyebrow">After the event</div><h2>From your room to the continent</h2><p>Keep your results, or send your top 3 ideas to the Africa Power Stack team within two weeks.</p></div>
+ <div class="hk-after">
+  <div><span class="lbl">01</span><h3>Submit</h3><p>Your top 3 one-page ideas, the points table, event details and up to 5 photos, with consent from everyone pictured.</p></div>
+  <div><span class="lbl">02</span><h3>Publish</h3><p>Selected winners become short articles on this website and the Africa Power Stack Substack, credited to the team and host.</p></div>
+  <div><span class="lbl">03</span><h3>Share</h3><p>Post your event, tag Africa Power Stack and use <b>#AfricaPowerStackHack</b>. We repost tagged events; hosts without social media are featured on the website.</p></div>
+ </div>
+ <p class="fine">Ground rules: systems, not personalities; peaceful change only; recent examples welcome; protect participants; any of the guide's seven languages.</p>
+</section>
+</div>
 <footer>
   <p id="siteAbout"></p>
   <p><b>Model limits.</b> This is a general picture built from patterns that repeat across countries. Africa has 54 states with very different systems, and most countries mix features of several country types; pick the closest. Country examples are indicative and change as transitions happen. Labels such as "co-opted opposition" describe a documented pattern in political science; the diagram does not claim any specific party is fake. The closeness-to-power score is a judgement scale for reflection, not a measurement. Nothing here is legal or financial advice.</p>
@@ -2789,7 +2866,7 @@ window.addEventListener("hashchange",()=>{const pl=LANG;hashLang=null;const r=re
 /* ============ UX LAYER: views, sticky context bar, sub-navigation, country drawer ============ */
 (function(){
 const UXT={
-en:{t_learn:"Start here",t_stack:"The Power Stack",t_career:"Find your place",t_faq:"Questions",t_cases:"Case studies",
+en:{t_hack:"Get involved - Hackathon",nextHack:"Next: get involved",e_hack:"",t_learn:"Start here",t_stack:"The Power Stack",t_career:"Find your place",t_faq:"Questions",t_cases:"Case studies",
  country:"Country type",career:"Your career",none:"No career chosen",map:"Map & details",res:"Oil, gas or mining",close:"Close",
  updated:"Updated for",cont:"Continue",top:"Back to top",ctTitle:"Choose a country type",
  e_stack:"See who holds power, the system's weak points, how it protects itself and the paths to change.",
@@ -2797,7 +2874,7 @@ en:{t_learn:"Start here",t_stack:"The Power Stack",t_career:"Find your place",t_
  e_cases:"Watch the system work in real events, compare two journeys, and read the conclusion.",
  go:"Open →",nextStack:"Next: explore the Power Stack",nextCareer:"Next: find your place in it",nextFaq:"Next: common questions",nextCases:"Next: case studies",nextEnd:"You've reached the end",
  nextHint:"Your country type and career carry over to every part.",clear:"Clear career",sections:"Sections"},
-fr:{t_learn:"Commencer ici",t_stack:"Le Power Stack",t_career:"Trouver sa place",t_faq:"Questions",t_cases:"Études de cas",
+fr:{t_hack:"S'impliquer - Hackathon",nextHack:"Suite : s'impliquer",e_hack:"",t_learn:"Commencer ici",t_stack:"Le Power Stack",t_career:"Trouver sa place",t_faq:"Questions",t_cases:"Études de cas",
  country:"Type de pays",career:"Votre carrière",none:"Aucune carrière choisie",map:"Carte et détails",res:"Pétrole, gaz ou mines",close:"Fermer",
  updated:"Mis à jour pour",cont:"Continuer",top:"Haut de page",ctTitle:"Choisir un type de pays",
  e_stack:"Qui détient le pouvoir, les points faibles du système, comment il se protège et les voies du changement.",
@@ -2805,7 +2882,7 @@ fr:{t_learn:"Commencer ici",t_stack:"Le Power Stack",t_career:"Trouver sa place"
  e_cases:"Voyez le système à l'œuvre dans des événements réels, comparez deux trajectoires et lisez la conclusion.",
  go:"Ouvrir →",nextStack:"Suite : explorer le Power Stack",nextCareer:"Suite : trouver votre place",nextFaq:"Suite : questions fréquentes",nextCases:"Suite : études de cas",nextEnd:"Vous êtes arrivé à la fin",
  nextHint:"Votre type de pays et votre carrière vous suivent dans chaque partie.",clear:"Effacer la carrière",sections:"Sections"},
-pt:{t_learn:"Começar aqui",t_stack:"O Power Stack",t_career:"Encontre o seu lugar",t_faq:"Perguntas",t_cases:"Estudos de caso",
+pt:{t_hack:"Participe - Hackathon",nextHack:"A seguir: participe",e_hack:"",t_learn:"Começar aqui",t_stack:"O Power Stack",t_career:"Encontre o seu lugar",t_faq:"Perguntas",t_cases:"Estudos de caso",
  country:"Tipo de país",career:"A sua carreira",none:"Nenhuma carreira escolhida",map:"Mapa e detalhes",res:"Petróleo, gás ou minas",close:"Fechar",
  updated:"Atualizado para",cont:"Continuar",top:"Voltar ao topo",ctTitle:"Escolher um tipo de país",
  e_stack:"Veja quem detém o poder, os pontos fracos do sistema, como se protege e os caminhos para a mudança.",
@@ -2813,7 +2890,7 @@ pt:{t_learn:"Começar aqui",t_stack:"O Power Stack",t_career:"Encontre o seu lug
  e_cases:"Veja o sistema a funcionar em acontecimentos reais, compare dois percursos e leia a conclusão.",
  go:"Abrir →",nextStack:"A seguir: explorar o Power Stack",nextCareer:"A seguir: encontrar o seu lugar",nextFaq:"A seguir: perguntas frequentes",nextCases:"A seguir: estudos de caso",nextEnd:"Chegou ao fim",
  nextHint:"O seu tipo de país e a sua carreira acompanham-no em todas as partes.",clear:"Limpar carreira",sections:"Secções"},
-sw:{t_learn:"Anza hapa",t_stack:"Power Stack",t_career:"Pata nafasi yako",t_faq:"Maswali",t_cases:"Mifano halisi",
+sw:{t_hack:"Shiriki - Hackathon",nextHack:"Ifuatayo: shiriki",e_hack:"",t_learn:"Anza hapa",t_stack:"Power Stack",t_career:"Pata nafasi yako",t_faq:"Maswali",t_cases:"Mifano halisi",
  country:"Aina ya nchi",career:"Taaluma yako",none:"Hujachagua taaluma",map:"Ramani na maelezo",res:"Mafuta, gesi au madini",close:"Funga",
  updated:"Imesasishwa kwa",cont:"Endelea",top:"Rudi juu",ctTitle:"Chagua aina ya nchi",
  e_stack:"Ona nani ana mamlaka, udhaifu wa mfumo, jinsi unavyojilinda na njia za mabadiliko.",
@@ -2821,7 +2898,7 @@ sw:{t_learn:"Anza hapa",t_stack:"Power Stack",t_career:"Pata nafasi yako",t_faq:
  e_cases:"Tazama mfumo ukifanya kazi katika matukio halisi, linganisha safari mbili na usome hitimisho.",
  go:"Fungua →",nextStack:"Ifuatayo: chunguza Power Stack",nextCareer:"Ifuatayo: pata nafasi yako",nextFaq:"Ifuatayo: maswali ya kawaida",nextCases:"Ifuatayo: mifano halisi",nextEnd:"Umefika mwisho",
  nextHint:"Aina ya nchi na taaluma yako vinakufuata katika kila sehemu.",clear:"Futa taaluma",sections:"Sehemu"},
-ar:{t_learn:"ابدأ من هنا",t_stack:"Power Stack",t_career:"اعثر على مكانك",t_faq:"أسئلة",t_cases:"دراسات حالة",
+ar:{t_hack:"شارك - هاكاثون",nextHack:"التالي: شارك",e_hack:"",t_learn:"ابدأ من هنا",t_stack:"Power Stack",t_career:"اعثر على مكانك",t_faq:"أسئلة",t_cases:"دراسات حالة",
  country:"نوع البلد",career:"مهنتك",none:"لم تختر مهنة",map:"الخريطة والتفاصيل",res:"نفط أو غاز أو تعدين",close:"إغلاق",
  updated:"تم التحديث لـ",cont:"تابع",top:"العودة إلى الأعلى",ctTitle:"اختر نوع البلد",
  e_stack:"اعرف من يملك السلطة، ونقاط ضعف النظام، وكيف يحمي نفسه، ومسارات التغيير.",
@@ -2829,7 +2906,7 @@ ar:{t_learn:"ابدأ من هنا",t_stack:"Power Stack",t_career:"اعثر عل
  e_cases:"شاهد النظام يعمل في أحداث حقيقية، وقارن بين مسارين، واقرأ الخاتمة.",
  go:"افتح ←",nextStack:"التالي: استكشف Power Stack",nextCareer:"التالي: اعثر على مكانك فيه",nextFaq:"التالي: أسئلة شائعة",nextCases:"التالي: دراسات حالة",nextEnd:"وصلت إلى النهاية",
  nextHint:"يرافقك نوع البلد ومهنتك في كل الأجزاء.",clear:"مسح المهنة",sections:"الأقسام"},
-zh:{t_learn:"从这里开始",t_stack:"权力架构",t_career:"找到你的位置",t_faq:"常见问题",t_cases:"案例研究",
+zh:{t_hack:"参与 - 政策黑客松",nextHack:"下一步：参与进来",e_hack:"",t_learn:"从这里开始",t_stack:"权力架构",t_career:"找到你的位置",t_faq:"常见问题",t_cases:"案例研究",
  country:"国家类型",career:"你的职业",none:"尚未选择职业",map:"地图与详情",res:"依赖石油、天然气或矿业",close:"关闭",
  updated:"已更新为",cont:"继续",top:"返回顶部",ctTitle:"选择国家类型",
  e_stack:"了解谁掌握权力、体系的弱点、它如何自我保护，以及变革的路径。",
@@ -2837,7 +2914,7 @@ zh:{t_learn:"从这里开始",t_stack:"权力架构",t_career:"找到你的位�
  e_cases:"在真实事件中观察体系如何运作，比较两条道路，并阅读结语。",
  go:"打开 →",nextStack:"下一步：探索权力架构",nextCareer:"下一步：找到你的位置",nextFaq:"下一步：常见问题",nextCases:"下一步：案例研究",nextEnd:"你已读到最后",
  nextHint:"你选择的国家类型和职业会贯穿所有部分。",clear:"清除职业",sections:"章节"},
-pcm:{t_learn:"Start here",t_stack:"Di Power Stack",t_career:"Find your place",t_faq:"Questions",t_cases:"Real-life examples",
+pcm:{t_hack:"Join us - Hackathon",nextHack:"Next: join us",e_hack:"",t_learn:"Start here",t_stack:"Di Power Stack",t_career:"Find your place",t_faq:"Questions",t_cases:"Real-life examples",
  country:"Country type",career:"Your work",none:"You never choose work",map:"Map & details",res:"Oil, gas or mining",close:"Close",
  updated:"E don change for",cont:"Continue",top:"Go back up",ctTitle:"Choose country type",
  e_stack:"See who get power, where di system weak, how e dey protect itself and di roads to change.",
@@ -2847,9 +2924,9 @@ pcm:{t_learn:"Start here",t_stack:"Di Power Stack",t_career:"Find your place",t_
  nextHint:"Your country type and work go follow you for every part.",clear:"Clear work",sections:"Sections"}
 };
 const X=k=>(UXT[LANG]&&UXT[LANG][k])||UXT.en[k];
-const VIEWS=["learn","stack","career","faq","cases"];
+const VIEWS=["learn","stack","career","faq","cases","hack"];
 const CTX_VIEWS=new Set(["stack","career"]);
-const NEXT={learn:["stack","nextStack"],stack:["career","nextCareer"],career:["faq","nextFaq"],faq:["cases","nextCases"],cases:[null,"nextEnd"]};
+const NEXT={learn:["stack","nextStack"],stack:["career","nextCareer"],career:["faq","nextFaq"],faq:["cases","nextCases"],cases:["hack","nextHack"],hack:[null,"nextEnd"]};
 const viewEl=v=>document.querySelector('.view[data-view="'+v+'"]');
 let view="learn";
 
@@ -3009,6 +3086,19 @@ addEventListener("hashchange",()=>{const v=viewFromHash();if(v&&v!==view)showVie
 let v0=viewFromHash();
 if(!v0&&(location.hash||"").replace("#","").split("-").some(p=>ROLES.some(r=>r.id===p)))v0="career";
 relabel();showView(v0||"learn",{replace:!!v0});booted=true;setBarH();
+})();
+</script>
+<script>
+(function(){
+const TR=[["Fair referees", "How can elections, courts and counts be run by bodies the incumbent does not control?", "ec"], ["Money that answers to citizens", "How can resource, aid and loan money reach clinics, schools and roads instead of patronage?", "tres"], ["Safe exits and peaceful change", "How can leaders leave office safely, and emergencies end on time?", "pres"], ["Peace and security", "How can armies, police and peacekeepers protect citizens rather than rulers?", "sec"], ["A seat for the young", "How can a population with a median age of 19 get real power over decisions?", "youth"], ["Jobs and markets", "How can trade, free movement and the informal economy create formal work for 12 million new job-seekers a year?", "recs"], ["Learning and skills", "How can schools and universities prepare young people for the jobs, and the AI, of 2040?", "tech"], ["Health for all", "How can clinics, medicines and health workers reach the poorest, and keep doctors from leaving?", "tres"], ["Women and girls", "How can women gain equal power over land, money, politics and safety?", "cso"], ["Climate and adaptation", "Who should decide, pay for and benefit from adaptation to drought, floods and heat?", "rural"], ["Food, land and water", "How can farmers secure land, water and fair prices, and feed nearly 2.5 billion people?", "trad"], ["Energy for everyone", "How can the half of the region without reliable electricity get it, and who should own it?", "tres"], ["Minerals for development", "How can the minerals the world needs for batteries and solar build African industry?", "ext"], ["Digital Africa and AI", "How can connectivity, data and AI serve citizens and stay hard to switch off or misuse?", "tech"], ["Cities and housing", "How can fast-growing cities give newcomers homes, transport and a voice?", "youth"], ["Partners, neighbours and the diaspora", "How can foreign partners, neighbouring states and the diaspora push toward accountability?", "nbr"], ["Mobility and migration", "How can Africans move, study and work across the continent and the world more freely?", "dia"]];
+const byNode={};TR.forEach((t,i)=>{(byNode[t[2]]=byNode[t[2]]||[]).push([i+1,t[0]])});
+document.querySelectorAll('.hk-cta a').forEach(a=>a.onclick=e=>{e.preventDefault();document.getElementById(a.getAttribute('href').slice(1)).scrollIntoView({behavior:'smooth',block:'start'})});
+document.querySelectorAll('.hk-map').forEach(b=>b.onclick=()=>{const id=b.dataset.node;sel=id;scenActive=false;refresh();renderInsp();
+ document.getElementById('diagram').scrollIntoView({behavior:'smooth',block:'start'});
+ const g=document.querySelector('#sys [data-id="'+id+'"]')||null;const ins=document.getElementById('insp');if(ins){ins.classList.add('hk-flash');setTimeout(()=>ins.classList.remove('hk-flash'),1200)}});
+const _ri=renderInsp;renderInsp=function(){_ri();if(!sel||!byNode[sel])return;const ins=document.getElementById('insp');const d=document.createElement('div');d.className='hk-insp';
+ d.innerHTML='<b>HACKATHON TRACKS FOR THIS PLAYER</b>'+byNode[sel].map(t=>'<span>Track '+String(t[0]).padStart(2,'0')+': '+t[1]+'</span>').join('')+'<button class="btn">Open the hackathon brief →</button>';
+ d.querySelector('button').onclick=()=>document.getElementById('hack-tracks').scrollIntoView({behavior:'smooth',block:'start'});ins.appendChild(d)};
 })();
 </script>
 </html>
