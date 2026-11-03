@@ -452,11 +452,125 @@ td b{font-weight:600}
 footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:8px;max-width:90ch}
 footer ol{margin:0;padding-left:20px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ============ UX LAYER: sticky context bar, views, sub-navigation, country drawer ============ */
+.langsw{position:static!important;margin-inline-start:auto;width:max-content;max-width:100%;box-shadow:none}
+body{padding-top:12px}
+.wrap{gap:22px}
+.view{display:flex;flex-direction:column;gap:28px}
+.view[hidden]{display:none!important}
+.view>section+section{margin-top:clamp(4px,1vw,12px);padding-top:clamp(28px,3.5vw,44px);border-top:1px solid var(--rule)}
+.view>section+section:not(:has(.section-head .eyebrow)){margin-top:0;padding-top:clamp(12px,2vw,20px);border-top:0}
+.view>section:empty,.view>section:has(>div:empty:only-child){display:none}
+section,.view,[id="navOut"]{scroll-margin-top:calc(var(--barh,120px) + 14px)}
+
+#psbar{position:sticky;top:0;z-index:40;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));
+  background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px);
+  border-bottom:1.5px solid var(--ink);padding-top:env(safe-area-inset-top,0px)}
+#psbar .in{max-width:1320px;margin:0 auto;display:flex;flex-direction:column}
+.pb-row{display:flex;align-items:center;gap:10px;min-width:0}
+.pb-tabs{overflow-x:auto;scrollbar-width:none;gap:2px;transition:max-height .2s ease,opacity .2s ease;max-height:60px}
+.pb-tabs::-webkit-scrollbar,.pb-sub::-webkit-scrollbar{display:none}
+.pb-mark{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap;padding:10px 12px 10px 0;color:var(--ink);border:0;background:none;cursor:pointer}
+.pb-mark i{font-style:normal;color:var(--accent)}
+.pb-tab{all:unset;box-sizing:border-box;cursor:pointer;white-space:nowrap;font-size:14px;font-weight:500;padding:11px 12px 9px;border-bottom:3px solid transparent;color:var(--muted);display:inline-flex;gap:7px;align-items:center}
+.pb-tab b{font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--muted);letter-spacing:.04em}
+.pb-tab:hover{color:var(--ink)}
+.pb-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.pb-tab[aria-selected="true"] b{color:var(--accent)}
+.pb-tab:focus-visible,.pb-sub a:focus-visible,.pb-ctx button:focus-visible,.pb-ctx select:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+
+.pb-ctx{flex-wrap:wrap;gap:8px 14px;padding:8px 0;border-top:1px solid var(--rule)}
+.pb-ctx[hidden]{display:none}
+.pb-f{display:flex;align-items:center;gap:8px;min-width:0}
+.pb-f>span{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.pb-sel{position:relative;display:flex;min-width:0}
+.pb-ctx select{font:inherit;font-size:14px;font-weight:600;appearance:none;-webkit-appearance:none;border:1.5px solid var(--rule);border-radius:3px;
+  padding-block:6px;padding-inline:10px 30px;background:var(--sheet);color:var(--ink);cursor:pointer;min-width:0;max-width:340px;text-overflow:ellipsis}
+.pb-sel::after{content:"";position:absolute;inset-inline-end:11px;top:50%;width:7px;height:7px;border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+#pbArch{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+#pbRole.on{border-color:var(--you);box-shadow:inset 3px 0 0 var(--you);color:var(--you)}
+html[dir="rtl"] #pbArch{box-shadow:inset -3px 0 0 var(--accent)}
+html[dir="rtl"] #pbRole.on{box-shadow:inset -3px 0 0 var(--you)}
+.pb-res{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.pb-res input{accent-color:var(--accent);width:15px;height:15px;margin:0}
+.pb-btn{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;padding:7px 10px;border:1.5px solid var(--ink);background:var(--sheet);color:var(--ink);cursor:pointer;border-radius:3px;white-space:nowrap;display:inline-flex;gap:6px;align-items:center}
+.pb-btn[aria-expanded="true"]{background:var(--ink);color:var(--sheet)}
+.pb-x{all:unset;cursor:pointer;font-size:16px;line-height:1;padding:4px 6px;color:var(--muted);border-radius:3px}
+.pb-x:hover{color:var(--ink)}
+.pb-x[hidden]{display:none}
+.pb-spacer{flex:1}
+
+.pb-sub{overflow-x:auto;scrollbar-width:none;gap:4px;padding:0 0 8px;transition:max-height .2s ease,opacity .2s ease,padding .2s;max-height:50px}
+.pb-sub[hidden]{display:none}
+.pb-sub a{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;text-decoration:none;white-space:nowrap;padding:5px 10px;border:1px solid var(--rule);border-radius:999px;color:var(--muted);background:var(--sheet)}
+.pb-sub a:hover{color:var(--ink);border-color:var(--ink)}
+.pb-sub a.on{color:var(--sheet);background:var(--ink);border-color:var(--ink)}
+.pb-sub a i{font-style:normal;opacity:.7;margin-inline-end:5px}
+
+#psbar.compact .pb-tabs,#psbar.compact .pb-sub{max-height:0;opacity:0;overflow:hidden;padding-block:0;pointer-events:none}
+#psbar.compact .pb-ctx{border-top:0}
+
+/* change feedback */
+.ux-toast{position:fixed;z-index:60;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translate(-50%,12px);opacity:0;pointer-events:none;
+  background:var(--ink);color:var(--sheet);font-size:13.5px;padding:9px 14px;border-radius:4px;max-width:calc(100vw - 32px);transition:opacity .2s,transform .2s;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.ux-toast.on{opacity:1;transform:translate(-50%,0)}
+.ux-toast b{color:var(--accent)}
+@keyframes uxpulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}100%{box-shadow:0 0 0 10px transparent}}
+.ux-pulse{animation:uxpulse .9s ease-out 1;outline:2px solid color-mix(in srgb,var(--accent) 60%,transparent);outline-offset:2px;transition:outline-color 1.2s}
+.ux-pulse.fade{outline-color:transparent}
+
+/* country-type drawer */
+.ux-drawer{position:fixed;z-index:50;inset-inline:0;top:var(--barh,120px);bottom:0;display:flex;justify-content:center;padding:0 max(16px,env(safe-area-inset-left,0px)) 16px;
+  visibility:hidden;opacity:0;transition:opacity .18s,visibility 0s .18s;background:color-mix(in srgb,var(--ink) 28%,transparent)}
+.ux-drawer.open{visibility:visible;opacity:1;transition:opacity .18s}
+.ux-drawer .panel{width:100%;max-width:1320px;max-height:100%;overflow:auto;overscroll-behavior:contain;background:var(--paper);border:1.5px solid var(--ink);border-top:0;
+  box-shadow:0 18px 40px rgba(0,0,0,.25);transform:translateY(-10px);transition:transform .18s}
+.ux-drawer.open .panel{transform:none}
+.ux-drawer .phead{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--sheet);border-bottom:1px solid var(--rule)}
+.ux-drawer .phead .lbl{flex:1}
+.ux-drawer #countrytype{padding:16px;scroll-margin-top:0}
+.ux-drawer #countrytype .section-head{max-width:80ch}
+.ux-drawer #countrytype .section-head .eyebrow{display:none}
+@media (max-width:700px){.ux-drawer{padding:0}.ux-drawer .panel{border-inline:0}}
+
+/* entry cards on the start view */
+.ux-entry{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1.5px solid var(--ink);background:var(--sheet)}
+@media (max-width:860px){.ux-entry{grid-template-columns:1fr}}
+.ux-entry button{all:unset;box-sizing:border-box;cursor:pointer;padding:18px;border-inline-end:1px solid var(--rule);display:flex;flex-direction:column;gap:8px;min-width:0;transition:background .15s}
+.ux-entry button:last-child{border-inline-end:0}
+@media (max-width:860px){.ux-entry button{border-inline-end:0;border-bottom:1px solid var(--rule)}.ux-entry button:last-child{border-bottom:0}}
+.ux-entry button:hover{background:color-mix(in srgb,var(--accent) 7%,var(--sheet))}
+.ux-entry button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.ux-entry h3{font-size:22px}
+.ux-entry p{font-size:14.5px;color:var(--muted)}
+.ux-entry .go{font-family:var(--mono);font-size:12px;color:var(--accent);margin-top:auto;letter-spacing:.04em}
+
+/* next-step footer of each view */
+.ux-next{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border:1.5px solid var(--ink);background:var(--sheet);padding:16px 18px}
+.ux-next .t{display:flex;flex-direction:column;gap:2px}
+.ux-next .t b{font-family:var(--display);font-size:22px;text-transform:uppercase;font-weight:800}
+.ux-next .acts{display:flex;gap:8px;flex-wrap:wrap}
+
+@media (max-width:700px){
+  .pb-mark{display:none}
+  .pb-tab{padding:10px 10px 8px;font-size:13.5px}
+  .pb-tab b{display:none}
+  .pb-ctx{gap:6px;flex-wrap:nowrap}
+  .pb-f{flex:1 1 0}
+  .pb-f>span:not(.pb-sel),.pb-res,.pb-btn .tx{display:none}
+  .pb-sel{flex:1;min-width:0}
+  .pb-ctx select{width:100%;max-width:none;font-size:13.5px;padding-block:7px;padding-inline:8px 26px}
+  .pb-spacer{display:none}
+}
+@media (prefers-reduced-motion:reduce){.ux-pulse{animation:none}.pb-tabs,.pb-sub,.ux-drawer,.ux-drawer .panel,.ux-toast{transition:none}}
+@media print{#psbar,.ux-drawer,.ux-toast,.ux-next{display:none!important}.view[hidden]{display:flex!important}}
 </style>
 
 <div class="wrap">
 
 <div class="langsw" role="group" aria-label="Language / Langue / Idioma / Lugha / اللغة / 语言 / Language"><button data-l="en" aria-pressed="true" lang="en">English</button><button data-l="fr" aria-pressed="false" lang="fr">Français</button><button data-l="pt" aria-pressed="false" lang="pt">Português</button><button data-l="sw" aria-pressed="false" lang="sw">Kiswahili</button><button data-l="ar" aria-pressed="false" lang="ar" dir="rtl">العربية</button><button data-l="zh" aria-pressed="false" lang="zh-Hans">简体中文</button><button data-l="pcm" aria-pressed="false" lang="pcm">Pidgin</button></div>
+<div class="view" data-view="learn" id="view-learn" role="tabpanel">
 <header class="titleblock intro">
   <div class="main">
     <div class="eyebrow">A guide to power in Africa · October 2026</div>
@@ -529,6 +643,7 @@ footer ol{margin:0;padding-left:20px}
   </div>
 </section>
 
+</div>
 <section id="countrytype">
   <div class="section-head">
     <div class="eyebrow">Choose a country type</div>
@@ -548,6 +663,7 @@ footer ol{margin:0;padding-left:20px}
   </div>
 </section>
 
+<div class="view" data-view="stack" id="view-stack" role="tabpanel" hidden>
 <section id="diagram">
   <div class="section-head">
     <div class="eyebrow">Part 2 · The map</div>
@@ -615,6 +731,8 @@ footer ol{margin:0;padding-left:20px}
   </table></div>
 </section>
 
+</div>
+<div class="view" data-view="career" id="view-career" role="tabpanel" hidden>
 <section id="navigator">
   <div class="section-head">
     <div class="eyebrow">Part 8 · Find yourself</div>
@@ -653,6 +771,8 @@ footer ol{margin:0;padding-left:20px}
   <p class="fine">Earnings are indicative ranges in US dollars per year, estimated from typical salaries and incomes for each role. They vary widely by country, seniority and exchange rate, and are meant for comparison, not as data.</p>
 </section>
 
+</div>
+<div class="view" data-view="faq" id="view-faq" role="tabpanel" hidden>
 <section id="faq">
   <div class="section-head">
     <div class="eyebrow">Part 10 · Questions people often ask</div>
@@ -662,11 +782,14 @@ footer ol{margin:0;padding-left:20px}
   <div class="faqlist" id="faqlist"></div>
 </section>
 
+</div>
+<div class="view" data-view="cases" id="view-cases" role="tabpanel" hidden>
 <section id="cases"><div id="casesRoot"></div></section>
 
 <section id="china"><div id="chinaRoot"></div></section>
 
 <section id="conclusion"><div id="endRoot"></div></section>
+</div>
 
 <footer>
   <p id="siteAbout"></p>
@@ -2642,4 +2765,230 @@ readHash();
 window.addEventListener("hashchange",()=>{const pl=LANG;hashLang=null;const r=readHash();if(r)choices={};if(hashLang&&hashLang!==pl)setLang(hashLang);else if(r)update(false)});
 </script>
 
+<script>
+/* ============ UX LAYER: views, sticky context bar, sub-navigation, country drawer ============ */
+(function(){
+const UXT={
+en:{t_learn:"Start here",t_stack:"The Power Stack",t_career:"Find your place",t_faq:"Questions",t_cases:"Case studies",
+ country:"Country type",career:"Your career",none:"No career chosen",map:"Map & details",res:"Oil, gas or mining",close:"Close",
+ updated:"Updated for",cont:"Continue",top:"Back to top",ctTitle:"Choose a country type",
+ e_stack:"See who holds power, the system's weak points, how it protects itself and the paths to change.",
+ e_career:"Choose one of 74 careers or describe yourself, and see where you sit, what you earn and the choices you face.",
+ e_cases:"Watch the system work in real events, compare two journeys, and read the conclusion.",
+ go:"Open →",nextStack:"Next: explore the Power Stack",nextCareer:"Next: find your place in it",nextFaq:"Next: common questions",nextCases:"Next: case studies",nextEnd:"You've reached the end",
+ nextHint:"Your country type and career carry over to every part.",clear:"Clear career",sections:"Sections"},
+fr:{t_learn:"Commencer ici",t_stack:"Le Power Stack",t_career:"Trouver sa place",t_faq:"Questions",t_cases:"Études de cas",
+ country:"Type de pays",career:"Votre carrière",none:"Aucune carrière choisie",map:"Carte et détails",res:"Pétrole, gaz ou mines",close:"Fermer",
+ updated:"Mis à jour pour",cont:"Continuer",top:"Haut de page",ctTitle:"Choisir un type de pays",
+ e_stack:"Qui détient le pouvoir, les points faibles du système, comment il se protège et les voies du changement.",
+ e_career:"Choisissez l'une des 74 carrières ou décrivez-vous, et voyez votre place, vos revenus et les choix qui s'offrent à vous.",
+ e_cases:"Voyez le système à l'œuvre dans des événements réels, comparez deux trajectoires et lisez la conclusion.",
+ go:"Ouvrir →",nextStack:"Suite : explorer le Power Stack",nextCareer:"Suite : trouver votre place",nextFaq:"Suite : questions fréquentes",nextCases:"Suite : études de cas",nextEnd:"Vous êtes arrivé à la fin",
+ nextHint:"Votre type de pays et votre carrière vous suivent dans chaque partie.",clear:"Effacer la carrière",sections:"Sections"},
+pt:{t_learn:"Começar aqui",t_stack:"O Power Stack",t_career:"Encontre o seu lugar",t_faq:"Perguntas",t_cases:"Estudos de caso",
+ country:"Tipo de país",career:"A sua carreira",none:"Nenhuma carreira escolhida",map:"Mapa e detalhes",res:"Petróleo, gás ou minas",close:"Fechar",
+ updated:"Atualizado para",cont:"Continuar",top:"Voltar ao topo",ctTitle:"Escolher um tipo de país",
+ e_stack:"Veja quem detém o poder, os pontos fracos do sistema, como se protege e os caminhos para a mudança.",
+ e_career:"Escolha uma de 74 carreiras ou descreva-se, e veja onde se situa, quanto ganha e as escolhas que enfrenta.",
+ e_cases:"Veja o sistema a funcionar em acontecimentos reais, compare dois percursos e leia a conclusão.",
+ go:"Abrir →",nextStack:"A seguir: explorar o Power Stack",nextCareer:"A seguir: encontrar o seu lugar",nextFaq:"A seguir: perguntas frequentes",nextCases:"A seguir: estudos de caso",nextEnd:"Chegou ao fim",
+ nextHint:"O seu tipo de país e a sua carreira acompanham-no em todas as partes.",clear:"Limpar carreira",sections:"Secções"},
+sw:{t_learn:"Anza hapa",t_stack:"Power Stack",t_career:"Pata nafasi yako",t_faq:"Maswali",t_cases:"Mifano halisi",
+ country:"Aina ya nchi",career:"Taaluma yako",none:"Hujachagua taaluma",map:"Ramani na maelezo",res:"Mafuta, gesi au madini",close:"Funga",
+ updated:"Imesasishwa kwa",cont:"Endelea",top:"Rudi juu",ctTitle:"Chagua aina ya nchi",
+ e_stack:"Ona nani ana mamlaka, udhaifu wa mfumo, jinsi unavyojilinda na njia za mabadiliko.",
+ e_career:"Chagua moja ya taaluma 74 au jieleze, uone ulipo, unachopata na maamuzi unayokabili.",
+ e_cases:"Tazama mfumo ukifanya kazi katika matukio halisi, linganisha safari mbili na usome hitimisho.",
+ go:"Fungua →",nextStack:"Ifuatayo: chunguza Power Stack",nextCareer:"Ifuatayo: pata nafasi yako",nextFaq:"Ifuatayo: maswali ya kawaida",nextCases:"Ifuatayo: mifano halisi",nextEnd:"Umefika mwisho",
+ nextHint:"Aina ya nchi na taaluma yako vinakufuata katika kila sehemu.",clear:"Futa taaluma",sections:"Sehemu"},
+ar:{t_learn:"ابدأ من هنا",t_stack:"Power Stack",t_career:"اعثر على مكانك",t_faq:"أسئلة",t_cases:"دراسات حالة",
+ country:"نوع البلد",career:"مهنتك",none:"لم تختر مهنة",map:"الخريطة والتفاصيل",res:"نفط أو غاز أو تعدين",close:"إغلاق",
+ updated:"تم التحديث لـ",cont:"تابع",top:"العودة إلى الأعلى",ctTitle:"اختر نوع البلد",
+ e_stack:"اعرف من يملك السلطة، ونقاط ضعف النظام، وكيف يحمي نفسه، ومسارات التغيير.",
+ e_career:"اختر واحدة من 74 مهنة أو صف نفسك، لترى أين تقع وكم تكسب والخيارات التي تواجهها.",
+ e_cases:"شاهد النظام يعمل في أحداث حقيقية، وقارن بين مسارين، واقرأ الخاتمة.",
+ go:"افتح ←",nextStack:"التالي: استكشف Power Stack",nextCareer:"التالي: اعثر على مكانك فيه",nextFaq:"التالي: أسئلة شائعة",nextCases:"التالي: دراسات حالة",nextEnd:"وصلت إلى النهاية",
+ nextHint:"يرافقك نوع البلد ومهنتك في كل الأجزاء.",clear:"مسح المهنة",sections:"الأقسام"},
+zh:{t_learn:"从这里开始",t_stack:"权力架构",t_career:"找到你的位置",t_faq:"常见问题",t_cases:"案例研究",
+ country:"国家类型",career:"你的职业",none:"尚未选择职业",map:"地图与详情",res:"依赖石油、天然气或矿业",close:"关闭",
+ updated:"已更新为",cont:"继续",top:"返回顶部",ctTitle:"选择国家类型",
+ e_stack:"了解谁掌握权力、体系的弱点、它如何自我保护，以及变革的路径。",
+ e_career:"从74种职业中选择一种或描述你自己，看看你的位置、收入以及你面临的选择。",
+ e_cases:"在真实事件中观察体系如何运作，比较两条道路，并阅读结语。",
+ go:"打开 →",nextStack:"下一步：探索权力架构",nextCareer:"下一步：找到你的位置",nextFaq:"下一步：常见问题",nextCases:"下一步：案例研究",nextEnd:"你已读到最后",
+ nextHint:"你选择的国家类型和职业会贯穿所有部分。",clear:"清除职业",sections:"章节"},
+pcm:{t_learn:"Start here",t_stack:"Di Power Stack",t_career:"Find your place",t_faq:"Questions",t_cases:"Real-life examples",
+ country:"Country type",career:"Your work",none:"You never choose work",map:"Map & details",res:"Oil, gas or mining",close:"Close",
+ updated:"E don change for",cont:"Continue",top:"Go back up",ctTitle:"Choose country type",
+ e_stack:"See who get power, where di system weak, how e dey protect itself and di roads to change.",
+ e_career:"Choose one of 74 careers or talk about yourself, and see where you dey, wetin you dey earn and di choices wey you dey face.",
+ e_cases:"Watch di system for real-life tins wey happen, compare two journeys, and read di conclusion.",
+ go:"Open →",nextStack:"Next: check di Power Stack",nextCareer:"Next: find your place inside",nextFaq:"Next: common questions",nextCases:"Next: real-life examples",nextEnd:"You don reach di end",
+ nextHint:"Your country type and work go follow you for every part.",clear:"Clear work",sections:"Sections"}
+};
+const X=k=>(UXT[LANG]&&UXT[LANG][k])||UXT.en[k];
+const VIEWS=["learn","stack","career","faq","cases"];
+const CTX_VIEWS=new Set(["stack","career"]);
+const NEXT={learn:["stack","nextStack"],stack:["career","nextCareer"],career:["faq","nextFaq"],faq:["cases","nextCases"],cases:[null,"nextEnd"]};
+const viewEl=v=>document.querySelector('.view[data-view="'+v+'"]');
+let view="learn";
+
+/* ---------- bar ---------- */
+const bar=document.createElement("nav");bar.id="psbar";bar.setAttribute("aria-label","Guide");
+bar.innerHTML=`<div class="in">
+ <div class="pb-row pb-tabs" role="tablist" id="pbTabs"><button class="pb-mark" id="pbMark" type="button">Africa <i>Power</i> Stack</button></div>
+ <div class="pb-row pb-ctx" id="pbCtx">
+  <label class="pb-f"><span id="pbArchL"></span><span class="pb-sel"><select id="pbArch"></select></span></label>
+  <label class="pb-res"><input type="checkbox" id="pbRes"><span id="pbResL"></span></label>
+  <button class="pb-btn" id="pbMap" type="button" aria-expanded="false" aria-controls="uxDrawer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg><span class="tx" id="pbMapL"></span></button>
+  <span class="pb-spacer"></span>
+  <label class="pb-f"><span id="pbRoleL"></span><span class="pb-sel"><select id="pbRole"></select></span></label>
+  <button class="pb-x" id="pbRoleX" type="button" hidden>×</button>
+ </div>
+ <div class="pb-row pb-sub" id="pbSub"></div>
+</div>`;
+const wrap=document.querySelector(".wrap");
+const lsw=document.querySelector(".langsw");
+lsw.after(bar);
+const $$=id=>document.getElementById(id);
+const tabs=$$("pbTabs");
+VIEWS.forEach((v,i)=>{const b=document.createElement("button");b.className="pb-tab";b.type="button";b.setAttribute("role","tab");b.dataset.v=v;b.id="pbt-"+v;b.setAttribute("aria-controls","view-"+v);b.innerHTML=`<b>${String(i+1).padStart(2,"0")}</b><span></span>`;b.onclick=()=>showView(v,{push:true,top:true});tabs.appendChild(b)});
+tabs.addEventListener("keydown",e=>{if(!["ArrowLeft","ArrowRight","Home","End"].includes(e.key))return;const i=VIEWS.indexOf(view);const rtl=document.documentElement.dir==="rtl";let n=i;
+ if(e.key==="Home")n=0;else if(e.key==="End")n=VIEWS.length-1;else n=i+((e.key==="ArrowRight")!==rtl?1:-1);n=(n+VIEWS.length)%VIEWS.length;showView(VIEWS[n],{push:true,top:true});$$("pbt-"+VIEWS[n]).focus();e.preventDefault()});
+$$("pbMark").onclick=()=>showView("learn",{push:true,top:true});
+
+/* ---------- drawer holding the country-type section ---------- */
+const drawer=document.createElement("div");drawer.className="ux-drawer";drawer.id="uxDrawer";drawer.setAttribute("role","dialog");drawer.setAttribute("aria-modal","false");drawer.setAttribute("aria-labelledby","uxDrawerT");
+drawer.innerHTML=`<div class="panel"><div class="phead"><span class="lbl" id="uxDrawerT"></span><button class="pb-btn" id="uxDrawerX" type="button"></button></div></div>`;
+document.body.appendChild(drawer);
+const ct=$$("countrytype");drawer.querySelector(".panel").appendChild(ct);
+let lastFocus=null;
+function placeDrawer(){drawer.style.top=Math.max(0,Math.round(bar.getBoundingClientRect().bottom))+"px"}
+addEventListener("scroll",()=>{if(drawer.classList.contains("open"))placeDrawer()},{passive:true});addEventListener("resize",()=>{if(drawer.classList.contains("open"))placeDrawer()});
+function openDrawer(){placeDrawer();lastFocus=document.activeElement;drawer.classList.add("open");$$("pbMap").setAttribute("aria-expanded","true");drawer.querySelector(".panel").scrollTop=0;setTimeout(()=>$$("uxDrawerX").focus(),30)}
+function closeDrawer(){if(!drawer.classList.contains("open"))return;drawer.classList.remove("open");$$("pbMap").setAttribute("aria-expanded","false");if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+$$("pbMap").onclick=()=>drawer.classList.contains("open")?closeDrawer():openDrawer();
+$$("uxDrawerX").onclick=closeDrawer;
+drawer.addEventListener("click",e=>{if(e.target===drawer)closeDrawer()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDrawer()});
+
+/* ---------- context controls ---------- */
+const selA=$$("pbArch"),selR=$$("pbRole"),resB=$$("pbRes");
+function fillSelects(){
+ selA.innerHTML=Object.entries(ARCH).map(([k,a])=>`<option value="${k}">${pesc(a.name)}</option>`).join("");
+ let h=`<option value="">${pesc(X("none"))}</option>`;
+ CATS.forEach(([c,ids])=>{h+=`<optgroup label="${pesc(T(c))}">`+ids.map(id=>{const r=ROLES.find(x=>x.id===id);return r?`<option value="${id}">${pesc(r.name)}</option>`:""}).join("")+`</optgroup>`});
+ const listed=new Set(CATS.flatMap(c=>c[1]));const rest=ROLES.filter(r=>!listed.has(r.id));
+ if(rest.length)h+=`<optgroup label="…">`+rest.map(r=>`<option value="${r.id}">${pesc(r.name)}</option>`).join("")+`</optgroup>`;
+ selR.innerHTML=h;syncCtx();
+}
+function syncCtx(){selA.value=arch;selR.value=role||"";selR.classList.toggle("on",!!role);$$("pbRoleX").hidden=!role;resB.checked=!!resource;
+ selA.title=ARCH[arch]?ARCH[arch].name:"";const r=role&&ROLES.find(x=>x.id===role);selR.title=r?r.name:""}
+selA.onchange=()=>{arch=selA.value;update(true)};
+selR.onchange=()=>{role=selR.value||null;choices={};sel=null;update(true);if(role&&typeof autoVoice!=="undefined"&&autoVoice&&typeof playBrief==="function")playBrief()};
+$$("pbRoleX").onclick=()=>{role=null;choices={};sel=null;update(true)};
+resB.onchange=()=>{resource=resB.checked;const rt=$$("resTog");if(rt)rt.checked=resource;update(false)};
+$$("resTog").addEventListener("change",()=>{resB.checked=$$("resTog").checked});
+
+/* ---------- labels (re-run on language change) ---------- */
+function relabel(){
+ VIEWS.forEach(v=>{const b=$$("pbt-"+v);b.querySelector("span").textContent=X("t_"+v);const el=viewEl(v);if(el)el.setAttribute("aria-label",X("t_"+v))});
+ $$("pbArchL").textContent=X("country");$$("pbRoleL").textContent=X("career");$$("pbResL").textContent=X("res");$$("pbMapL").textContent=X("map");
+ $$("pbMap").setAttribute("aria-label",X("map"));$$("pbRoleX").setAttribute("aria-label",X("clear"));$$("pbRoleX").title=X("clear");
+ $$("uxDrawerT").textContent=X("ctTitle");$$("uxDrawerX").textContent=X("close")+" ✕";
+ $$("pbSub").setAttribute("aria-label",X("sections"));
+ document.querySelectorAll(".ux-entry [data-go]").forEach(b=>{const v=b.dataset.go;b.querySelector("h3").textContent=X("t_"+v);b.querySelector("p").textContent=X("e_"+v);b.querySelector(".go").textContent=X("go")});
+ document.querySelectorAll(".ux-next").forEach(n=>{const v=n.dataset.from,[nx,k]=NEXT[v];n.querySelector(".t b").textContent=X(k);n.querySelector(".t span").textContent=X("nextHint");
+  const a=n.querySelector(".acts");a.innerHTML="";if(nx){const b=document.createElement("button");b.className="btn primary";b.textContent=X("t_"+nx)+(document.documentElement.dir==="rtl"?" ←":" →");b.onclick=()=>showView(nx,{push:true,top:true});a.appendChild(b)}
+  const t=document.createElement("button");t.className="btn";t.textContent=X("top")+" ↑";t.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});a.appendChild(t)});
+ fillSelects();buildSub();
+}
+
+/* ---------- entry cards + next-step blocks ---------- */
+const learn=viewEl("learn");
+const entry=document.createElement("div");entry.className="ux-entry";
+entry.innerHTML=["stack","career","cases"].map(v=>`<button type="button" data-go="${v}"><span class="lbl">${String(VIEWS.indexOf(v)+1).padStart(2,"0")}</span><h3></h3><p></p><span class="go"></span></button>`).join("");
+learn.querySelector("header").after(entry);
+entry.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>showView(b.dataset.go,{push:true,top:true}));
+VIEWS.forEach(v=>{const el=viewEl(v);if(!el)return;const n=document.createElement("div");n.className="ux-next";n.dataset.from=v;n.innerHTML=`<div class="t"><b></b><span class="fine"></span></div><div class="acts"></div>`;el.appendChild(n)});
+
+/* ---------- sub-navigation with scroll-spy ---------- */
+let spy=null;
+function secLabel(s){const eb=s.querySelector(".section-head .eyebrow");const h=s.querySelector(".section-head h2, h2");let t=eb?eb.textContent.trim():"";
+ const parts=t.split("·");let num="",name=t;if(parts.length>1){name=parts.slice(1).join("·").trim();const m=parts[0].match(/\d+/);num=m?m[0]:""}
+ if(!name&&h)name=h.textContent.trim();return [num,name]}
+function buildSub(){const sub=$$("pbSub");sub.innerHTML="";if(spy){spy.disconnect();spy=null}
+ const el=viewEl(view);if(!el)return;const secs=[...el.querySelectorAll(":scope>section")].filter(s=>s.querySelector("h2")&&s.offsetParent!==null||s.querySelector("h2"));
+ const items=secs.filter(s=>{const[,n]=secLabel(s);return n});
+ if(items.length<2){sub.hidden=true;setBarH();return}
+ sub.hidden=false;
+ items.forEach((s,i)=>{if(!s.id)s.id="ux-sec-"+view+"-"+i;const[num,name]=secLabel(s);const a=document.createElement("a");a.href="#"+s.id;a.dataset.t=s.id;a.innerHTML=(num?`<i>${num}</i>`:"")+pesc(name);
+  a.onclick=e=>{e.preventDefault();s.scrollIntoView({behavior:"smooth",block:"start"})};sub.appendChild(a)});
+ spy=new IntersectionObserver(es=>{const vis=items.map(s=>[s,s.getBoundingClientRect()]).filter(([,r])=>r.bottom>barH()+40);const cur=vis.length?vis[0][0]:items[items.length-1];
+  sub.querySelectorAll("a").forEach(a=>{const on=a.dataset.t===cur.id;a.classList.toggle("on",on);if(on&&a.scrollIntoViewIfNeeded)a.scrollIntoViewIfNeeded(false);else if(on){const sl=a.offsetLeft-sub.clientWidth/2+a.clientWidth/2;sub.scrollTo({left:sl,behavior:"smooth"})}})},{rootMargin:"-"+(barH()+10)+"px 0px -55% 0px",threshold:[0,1]});
+ items.forEach(s=>spy.observe(s));setBarH();
+}
+
+/* ---------- view switching ---------- */
+function showView(v,o){o=o||{};if(!VIEWS.includes(v))v="learn";const changed=v!==view;view=v;
+ VIEWS.forEach(x=>{const el=viewEl(x);if(el)el.hidden=x!==v;const b=$$("pbt-"+x);b.setAttribute("aria-selected",x===v);b.tabIndex=x===v?0:-1});
+ $$("pbCtx").hidden=!CTX_VIEWS.has(v);if(!CTX_VIEWS.has(v))closeDrawer();
+ const tb=$$("pbt-"+v);if(tb&&tabs.scrollTo)tabs.scrollTo({left:tb.offsetLeft-20,behavior:"smooth"});
+ buildSub();bar.classList.remove("compact");
+ if(o.push&&changed){try{history.pushState({v},"",hashFor())}catch(e){}}else if(o.replace){try{history.replaceState({v},"",hashFor())}catch(e){}}
+ if(o.top){const y=viewEl(v).getBoundingClientRect().top+scrollY-barH()-8;window.scrollTo({top:Math.max(0,Math.min(scrollY,y)),behavior:"auto"});if(scrollY>y)window.scrollTo({top:Math.max(0,y)})}
+}
+function hashFor(){const h=(role?role+"-":"")+arch+(LANG!=="en"?"-"+LANG:"")+(view!=="learn"?"-"+view:"");return "#"+h}
+
+/* existing jumps (e.g. "see me on the map") switch to the right view first */
+const _siv=Element.prototype.scrollIntoView;
+Element.prototype.scrollIntoView=function(a){const v=this.closest&&this.closest(".view");if(v&&v.hidden){showView(v.dataset.view,{push:true});a={block:"start"}}
+ if(this.closest&&this.closest(".ux-drawer")&&!drawer.classList.contains("open")&&this.id!=="countrytype")openDrawer();
+ return _siv.call(this,a)};
+
+/* ---------- wrap the page's own functions ---------- */
+const _setHash=setHash;
+setHash=function(){try{history.replaceState(history.state,"",hashFor())}catch(e){_setHash()}};
+let prevA=arch,prevR=role,prevRes=resource,booted=false;
+const _update=update;
+update=function(h){_update(h);syncCtx();
+ if(booted&&(arch!==prevA||role!==prevR||resource!==prevRes)){feedback(arch!==prevA||resource!==prevRes)}
+ prevA=arch;prevR=role;prevRes=resource};
+const _setLang=setLang;
+setLang=function(l,f){_setLang(l,f);relabel();if(!f)setHash()};
+
+/* ---------- change feedback ---------- */
+const toast=document.createElement("div");toast.className="ux-toast";toast.setAttribute("role","status");toast.setAttribute("aria-live","polite");document.body.appendChild(toast);
+let tt=null;
+function feedback(archChanged){
+ const r=role&&ROLES.find(x=>x.id===role);
+ toast.innerHTML=`${pesc(X("updated"))}: <b>${pesc(ARCH[arch].name)}</b>${r?" · "+pesc(r.name):""}`;toast.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("on"),2400);
+ const ids=archChanged?["issues","scenList","scenBody","navOut","em","sys","insp"]:["navOut","em","sys","insp","issues","scenBody"];
+ const vh=innerHeight;
+ ids.forEach(id=>{let el=$$(id);if(!el)return;if(id==="issues")el=el.closest(".issues")||el;if(id==="sys")el=el.closest(".board")||el;if(id==="em")el=el.closest(".emwrap")||el;
+  const v=el.closest(".view");if(v&&v.hidden)return;const rc=el.getBoundingClientRect();if(rc.bottom<barH()||rc.top>vh||rc.height===0)return;
+  el.classList.remove("ux-pulse","fade");void el.offsetWidth;el.classList.add("ux-pulse");setTimeout(()=>el.classList.add("fade"),900);setTimeout(()=>el.classList.remove("ux-pulse","fade"),2200)});
+}
+
+/* ---------- bar height + compact-on-scroll ---------- */
+function barH(){return bar.getBoundingClientRect().height}
+function setBarH(){document.documentElement.style.setProperty("--barh",Math.round(barH())+"px")}
+new ResizeObserver(setBarH).observe(bar);
+let lastY=scrollY,ticking=false;
+addEventListener("scroll",()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{const y=scrollY,d=y-lastY;
+ if(innerWidth<=900){if(d>8&&y>260)bar.classList.add("compact");else if(d<-8||y<120)bar.classList.remove("compact")}else bar.classList.remove("compact");
+ lastY=y;ticking=false})},{passive:true});
+
+/* ---------- history ---------- */
+function viewFromHash(){const p=(location.hash||"").replace("#","").split("-");return p.find(x=>VIEWS.includes(x))||null}
+addEventListener("popstate",()=>{const v=viewFromHash()||"learn";showView(v,{top:true});const hl=(location.hash||"").replace("#","").split("-");let ch=false;
+ hl.forEach(p=>{if(ROLES.some(r=>r.id===p)&&role!==p){role=p;ch=true}if(ARCH[p]&&arch!==p){arch=p;ch=true}});if(!hl.some(p=>ROLES.some(r=>r.id===p))&&role){role=null;ch=true}if(ch){choices={};update(false)}});
+addEventListener("hashchange",()=>{const v=viewFromHash();if(v&&v!==view)showView(v,{top:true})});
+
+/* ---------- boot ---------- */
+let v0=viewFromHash();
+if(!v0&&(location.hash||"").replace("#","").split("-").some(p=>ROLES.some(r=>r.id===p)))v0="career";
+relabel();showView(v0||"learn",{replace:!!v0});booted=true;setBarH();
+})();
+</script>
 </html>
